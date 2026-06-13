@@ -11,19 +11,23 @@
 #ifndef SUBLEVEL_ASSET_H
 #define SUBLEVEL_ASSET_H
 
-/*
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include <mesh/internal/module.h>
+#include <level/internal/module.h>
+#include <elements/light.h>
 #include <library/asset/types.h>
 #include <library/containers/cvector.h>
+#include <library/string/cstring.h>
+#include <math/vector3f.h>
+#include <mesh/bulk_mesh_asset.h>
+#include <spatial/bvh/bvh.h>
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//| mesh_asset_t, '*' = mesh_asset
+//| sublevel_asset_t, '*' = sublevel_asset
 //|=============================================================================
 //| OPERATION                   | SUPPORTED
 //|=============================================================================
@@ -54,79 +58,86 @@ typedef struct allocator_t allocator_t;
 typedef struct binary_stream_t binary_stream_t;
 
 typedef
-struct mesh_asset_t {
-  cvector_t vertices;           // float
-  cvector_t normals;            // float
-  cvector_t uvs;                // float
-  cvector_t indices;            // uint32_t
-  cvector_t materials;          // asset_ref_t (material asset or bulk variant)
-} mesh_asset_t;
+struct sublevel_metadata_t {
+  point3f player_start;
+  float player_angle;
+} sublevel_metadata_t;
 
-MESH_API
+typedef
+struct sublevel_asset_t {
+  cstring_t name;
+  sublevel_metadata_t metadata;
+  point3f position;
+  bulk_mesh_asset_t meshes;
+  bvh_t bvh;
+  cvector_t lights;
+} sublevel_asset_t;
+
+LEVEL_API
 void
-mesh_asset_def(void *ptr);
+sublevel_asset_def(void *ptr);
 
-MESH_API
+LEVEL_API
 uint32_t
-mesh_asset_is_def(const void *ptr);
+sublevel_asset_is_def(const void *ptr);
 
-MESH_API
+LEVEL_API
 void
-mesh_asset_serialize(
+sublevel_asset_serialize(
   const void *src,
   binary_stream_t *stream);
 
-MESH_API
+LEVEL_API
 void
-mesh_asset_deserialize(
+sublevel_asset_deserialize(
   void *dst,
   const allocator_t *allocator,
   binary_stream_t* stream);
 
-MESH_API
+LEVEL_API
 size_t
-mesh_asset_type_size(void);
+sublevel_asset_type_size(void);
 
-MESH_API
+LEVEL_API
 uint32_t
-mesh_asset_owns_alloc(void);
+sublevel_asset_owns_alloc(void);
 
-MESH_API
+LEVEL_API
 const allocator_t *
-mesh_asset_get_alloc(const void *ptr);
+sublevel_asset_get_alloc(const void *ptr);
 
-MESH_API
+LEVEL_API
 void
-mesh_asset_cleanup(
+sublevel_asset_cleanup(
   void *ptr,
   const allocator_t *allocator);
 
-MESH_API
+LEVEL_API
 const char *
-mesh_asset_get_dir(void);
+sublevel_asset_get_dir(void);
 
-MESH_API
+LEVEL_API
 loader_t
-mesh_asset_get_loader(void);
+sublevel_asset_get_loader(void);
 
-MESH_API
+LEVEL_API
 deloader_t
-mesh_asset_get_deloader(void);
+sublevel_asset_get_deloader(void);
 
-MESH_API
+LEVEL_API
 uint32_t
-mesh_asset_type_asset_count(const void *src);
+sublevel_asset_type_asset_count(const void *src);
 
-MESH_API
+LEVEL_API
 void
-mesh_asset_type_get_assets(const void *src, const asset_ref_t *refs[]);
+sublevel_asset_type_get_assets(const void *src, const asset_ref_t *refs[]);
 
-MESH_API
+LEVEL_API
 uint32_t
-mesh_asset_is_asset_type(void);
+sublevel_asset_is_asset_type(void);
 
 #ifdef __cplusplus
 }
 #endif
-*/
+
 #endif
