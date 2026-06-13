@@ -10,19 +10,19 @@
  */
 #ifndef LEVEL_ASSET_H
 #define LEVEL_ASSET_H
-/*
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include <mesh/internal/module.h>
+#include <level/internal/module.h>
 #include <library/asset/types.h>
 #include <library/containers/cvector.h>
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//| bulk_mesh_asset_t, '*' = bulk_mesh_asset
+//| level_asset_t, '*' = level_asset
 //|=============================================================================
 //| OPERATION                   | SUPPORTED
 //|=============================================================================
@@ -53,75 +53,75 @@ typedef struct allocator_t allocator_t;
 typedef struct binary_stream_t binary_stream_t;
 
 typedef
-struct bulk_mesh_asset_t {
-  cvector_t meshes;
-} bulk_mesh_asset_t;
+struct level_asset_t {
+  cvector_t sublevels;
+} level_asset_t;
 
-MESH_API
+LEVEL_API
 void
-bulk_mesh_asset_def(void *ptr);
+level_asset_def(void *ptr);
 
-MESH_API
+LEVEL_API
 uint32_t
-bulk_mesh_asset_is_def(const void *ptr);
+level_asset_is_def(const void *ptr);
 
-MESH_API
+LEVEL_API
 void
-bulk_mesh_asset_serialize(
+level_asset_serialize(
   const void *src,
   binary_stream_t *stream);
 
-MESH_API
+LEVEL_API
 void
-bulk_mesh_asset_deserialize(
+level_asset_deserialize(
   void *dst,
   const allocator_t *allocator,
   binary_stream_t* stream);
 
-MESH_API
+LEVEL_API
 size_t
-bulk_mesh_asset_type_size(void);
+level_asset_type_size(void);
 
-MESH_API
+LEVEL_API
 uint32_t
-bulk_mesh_asset_owns_alloc(void);
+level_asset_owns_alloc(void);
 
-MESH_API
+LEVEL_API
 const allocator_t *
-bulk_mesh_asset_get_alloc(const void *ptr);
+level_asset_get_alloc(const void *ptr);
 
-MESH_API
+LEVEL_API
 void
-bulk_mesh_asset_cleanup(
+level_asset_cleanup(
   void *ptr,
   const allocator_t *allocator);
 
-MESH_API
+LEVEL_API
 const char *
-bulk_mesh_asset_get_dir(void);
+level_asset_get_dir(void);
 
-MESH_API
+LEVEL_API
 loader_t
-bulk_mesh_asset_get_loader(void);
+level_asset_get_loader(void);
 
-MESH_API
+LEVEL_API
 deloader_t
-bulk_mesh_asset_get_deloader(void);
+level_asset_get_deloader(void);
 
-MESH_API
+LEVEL_API
 uint32_t
-bulk_mesh_asset_type_asset_count(const void *src);
+level_asset_type_asset_count(const void *src);
 
-MESH_API
+LEVEL_API
 void
-bulk_mesh_asset_type_get_assets(const void *src, const asset_ref_t *refs[]);
+level_asset_type_get_assets(const void *src, const asset_ref_t *refs[]);
 
-MESH_API
+LEVEL_API
 uint32_t
-bulk_mesh_asset_is_asset_type(void);
+level_asset_is_asset_type(void);
 
 #ifdef __cplusplus
 }
 #endif
-*/
+
 #endif
