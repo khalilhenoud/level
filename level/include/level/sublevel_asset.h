@@ -17,12 +17,12 @@ extern "C" {
 
 #include <stdint.h>
 #include <level/internal/module.h>
-#include <elements/light.h>
 #include <library/asset/types.h>
 #include <library/containers/cvector.h>
 #include <library/string/cstring.h>
 #include <math/vector3f.h>
 #include <mesh/bulk_mesh_asset.h>
+#include <props/light.h>
 #include <spatial/bvh/bvh.h>
 
 
