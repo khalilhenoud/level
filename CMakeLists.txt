@@ -39,8 +39,8 @@ if (NOT HAS_STANDALONE_PREDECESSOR)
     message(FATAL_ERROR "The spatial submdule was not downloaded!")
   endif()
 
-  if (NOT EXISTS "${PROJECT_SOURCE_DIR}/external/elements/CMakeLists.txt")
-    message(FATAL_ERROR "The elements submdule was not downloaded!")
+  if (NOT EXISTS "${PROJECT_SOURCE_DIR}/external/props/CMakeLists.txt")
+    message(FATAL_ERROR "The props submdule was not downloaded!")
   endif()
 
   #add the subdirectory
@@ -48,7 +48,7 @@ if (NOT HAS_STANDALONE_PREDECESSOR)
   add_subdirectory(external/math math)
   add_subdirectory(external/mesh mesh)
   add_subdirectory(external/spatial spatial)
-  add_subdirectory(external/elements elements)
+  add_subdirectory(external/props props)
 endif()
 
 add_subdirectory(level)
