@@ -103,7 +103,7 @@ level_asset_cleanup(
 const char *
 level_asset_get_dir(void)
 {
-  static const char *directory = "sublevels";
+  static const char *directory = "levels";
   return directory;
 }
 
