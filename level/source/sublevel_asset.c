@@ -53,7 +53,7 @@ sublevel_asset_serialize(
     cstring_serialize(&sublevel->name, stream);
     binary_stream_write(
       stream, &sublevel->metadata, sizeof(sublevel_metadata_t));
-    binary_stream_write(stream, &sublevel->position, sizeof(point3f));
+    binary_stream_write(stream, &sublevel->transform, sizeof(matrix4f));
     bulk_mesh_asset_serialize(&sublevel->meshes, stream);
     bvh_serialize(&sublevel->bvh, stream);
     cvector_serialize(&sublevel->lights, stream);
@@ -75,7 +75,7 @@ sublevel_asset_deserialize(
     binary_stream_read2(
       stream, (uint8_t *)&sublevel->metadata, sizeof(sublevel_asset_t));
     binary_stream_read2(
-      stream, (uint8_t *)&sublevel->position, sizeof(point3f));
+      stream, (uint8_t *)&sublevel->transform, sizeof(matrix4f));
     bulk_mesh_asset_deserialize(&sublevel->meshes, allocator, stream);
     bvh_deserialize(&sublevel->bvh, allocator, stream);
     cvector_deserialize(&sublevel->lights, allocator, stream);

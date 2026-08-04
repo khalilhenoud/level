@@ -20,6 +20,7 @@ extern "C" {
 #include <library/asset/types.h>
 #include <library/containers/cvector.h>
 #include <library/string/cstring.h>
+#include <math/matrix4f.h>
 #include <math/vector3f.h>
 #include <mesh/bulk_mesh_asset.h>
 #include <props/light.h>
@@ -67,7 +68,7 @@ typedef
 struct sublevel_asset_t {
   cstring_t name;
   sublevel_metadata_t metadata;
-  point3f position;
+  matrix4f transform;
   bulk_mesh_asset_t meshes;
   bvh_t bvh;
   cvector_t lights;
