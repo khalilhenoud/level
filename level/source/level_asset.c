@@ -119,10 +119,11 @@ level_asset_loader(
 
   {
     level_asset_t **ptr = (level_asset_t **)ptr_addr;
-    level_asset_t *asset_ptr = *ptr;
+    level_asset_t *asset_ptr = NULL;
     binary_stream_t *stream = binary_stream_from_file(
       asset_ref->path.str, allocator);
     *ptr = allocator->mem_alloc(sizeof(level_asset_t));
+    asset_ptr = *ptr;
     level_asset_def(asset_ptr);
     level_asset_deserialize(asset_ptr, allocator, stream);
     binary_stream_cleanup(stream);
