@@ -73,7 +73,7 @@ sublevel_asset_deserialize(
     cstring_def(&sublevel->name);
     cstring_deserialize(&sublevel->name, allocator, stream);
     binary_stream_read2(
-      stream, (uint8_t *)&sublevel->metadata, sizeof(sublevel_asset_t));
+      stream, (uint8_t *)&sublevel->metadata, sizeof(sublevel_metadata_t));
     binary_stream_read2(
       stream, (uint8_t *)&sublevel->transform, sizeof(matrix4f));
     bulk_mesh_asset_deserialize(&sublevel->meshes, allocator, stream);
@@ -136,10 +136,11 @@ sublevel_asset_loader(
 
   {
     sublevel_asset_t **ptr = (sublevel_asset_t **)ptr_addr;
-    sublevel_asset_t *asset_ptr = *ptr;
+    sublevel_asset_t *asset_ptr = NULL;
     binary_stream_t *stream = binary_stream_from_file(
       asset_ref->path.str, allocator);
     *ptr = allocator->mem_alloc(sizeof(sublevel_asset_t));
+    asset_ptr = *ptr;
     sublevel_asset_def(asset_ptr);
     sublevel_asset_deserialize(asset_ptr, allocator, stream);
     binary_stream_cleanup(stream);
